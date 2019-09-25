@@ -14,13 +14,12 @@ int global_variable;
 
 int main(int argc, char *argv[])
 {
-	(void)argc;
+	
 
 	FILE *fptr;
 	char *line = NULL;
 	size_t max = 0;
 
-	fptr = fopen(argv[1], "r");
 	char *av;
 	char *op_code;
 
@@ -29,6 +28,10 @@ int main(int argc, char *argv[])
 
 	stack_t *head = NULL;
 
+	(void) argc;
+
+
+	fptr = fopen(argv[1], "r");
 	while (getline(&line, &max, fptr) != EOF)
 	{
 		op_code = NULL;
@@ -45,4 +48,6 @@ int main(int argc, char *argv[])
 	}
 	fclose(fptr);
 	free(line);
+
+	return(0);
 }
