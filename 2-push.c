@@ -12,9 +12,7 @@ int global_variable;
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp_node = *stack;
-	stack_t *node;
 	int number;
-	int i = 1;
 
 	number = global_variable;
 
