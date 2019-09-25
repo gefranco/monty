@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "monty.h"
 
 /**
@@ -16,11 +17,11 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 	instruction_t opcodes[] = {
 		{"push", push},
 		{"pall", _pall},
-		{"pint", pint},
+		/**{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
-		{"nop", nop},
+		{"nop", nop},*/
 		{NULL, NULL}
 	};
 	while (opcodes[i].opcode)
@@ -29,4 +30,5 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 			(opcodes[i].f(stack, line_number));
 		i++;
 	}
+	return (1);
 }
