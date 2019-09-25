@@ -9,10 +9,10 @@
 */
 void _pall(stack_t **stack, unsigned int line_number)
 {
-	(void) line_number;
 
 	stack_t *tmp_node = *stack;
 
+	(void) line_number;
 	while (tmp_node->next)
 	{
 
