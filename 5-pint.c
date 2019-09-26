@@ -3,7 +3,7 @@
 #include "monty.h"
 
 /**
-*_pall - print the stack reverse.
+*pint - print the stack reverse.
 *@stack: Pointer to header of the stack.
 *@line_number: line number of the file.
 */
@@ -13,7 +13,7 @@ void pint(stack_t **stack, unsigned int line_number)
 	stack_t *tmp_node = *stack;
 
 	(void) line_number;
-	if(*stack==NULL)
+	if (*stack == NULL)
 	{
 		return;
 	}
