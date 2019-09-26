@@ -29,29 +29,30 @@ int main(int argc, char *argv[])
 
 	stack_t *head = NULL;
 
-	(void) argc;
-
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 
 	fptr = fopen(argv[1], "r");
-	if(!fptr)
+	if (!fptr)
 		exit(EXIT_FAILURE);
 	while (getline(&line, &max, fptr) != EOF)
 	{
 		op_code = NULL;
 		op_code = strtok(line, " ");
-			
 		if (strcmp(op_code, "pall\n") == 0 && i == 1)
 		{
 			free_stack(head);
 			free(line);
-                        exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
-
 
 		av = strtok(NULL, " ");
 		if (strcmp(op_code, "push\n") == 0)
 		{
-                        fprintf(stderr,"L%d: usage: push integer\n",i);
+			fprintf(stderr,"L%d: usage: push integer\n",i);
 			free_stack(head);
 			free(line);
 			exit(EXIT_FAILURE);
@@ -73,19 +74,14 @@ int main(int argc, char *argv[])
 
 int is_number(char *n, int line)
 {
-	
 	int i = 0;
 	(void)line;
 	while(n[i]!='\n')
-	{	
+	{
         	if (!isdigit(n[i]))
         	{
             		return(0);
-			/*fprintf(stderr,"L%d: usage: push integer\n",line);
-			free_stack(head);
-			free(line);*/
-            	
-        	}
+		}
 		i++;
 	}
 
