@@ -20,7 +20,7 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 		{"pall\n", _pall},
 		{"pint\n", pint},
 		{"pop\n", pop},
-		{"add", add},
+		{"add", _add},
 		{"nop", nop},
 		/*{"pop", pop},
 		{"swap", swap},

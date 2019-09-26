@@ -8,8 +8,8 @@
  *@line_number: Line number of the file
  */
 
-void nop(stack_t **stack, unsigned in line_number)
+void nop(stack_t **stack, unsigned int line_number)
 {
-	(void) stak;
+	(void) stack;
 	(void) line_number;
 }
