@@ -14,9 +14,10 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 {
 
 	int i = 0;
+	
 	instruction_t opcodes[] = {
 		{"push", push},
-		{"pall", _pall},
+		{"pall\n", _pall},
 		/**{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
@@ -24,6 +25,8 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 		{"nop", nop},*/
 		{NULL, NULL}
 	};
+
+
 	while (opcodes[i].opcode)
 	{
 		if (strcmp(opcodes[i].opcode, opcode) == 0)
