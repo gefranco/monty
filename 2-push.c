@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "monty.h"
 
 int global_variable;
@@ -38,28 +36,4 @@ void push(stack_t **stack, unsigned int line_number)
 
 	*stack = (*stack)->prev;
 
-
-/*
-	if (line_number == 1)
-	{
-		*stack = malloc(sizeof(stack_t));
-		(*stack)->n = number;
-		(*stack)->next = NULL;
-		(*stack)->prev = NULL;
-		return;
-	}
-	tmp_node = *stack;
-
-	while (tmp_node->next)
-	{
-		tmp_node = tmp_node->next;
-
-	}
-
-	tmp_node->next = malloc(sizeof(stack_t));
-	tmp_node->next->n = number;
-	tmp_node->next->next = NULL;
-	tmp_node->next->prev = tmp_node;
-
-*/	
 }
