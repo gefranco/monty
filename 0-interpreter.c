@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "monty.h"
+int is_number(char *n,int line);
 
 int global_variable;
 
@@ -35,11 +37,22 @@ int main(int argc, char *argv[])
 	{
 		op_code = NULL;
 		op_code = strtok(line, " ");
+			
+		if (strcmp(op_code, "pall\n") == 0 && i == 1)
+		{
+                        exit(EXIT_FAILURE);
+		}
+
 
 		av = strtok(NULL, " ");
+		if (strcmp(op_code, "push\n") == 0)
+		{
+                        printf("L1{%d}: usage: push integer\n",i);
+			exit(EXIT_FAILURE);
+		}
 
 
-		if (av)
+		if (av && is_number(av,i))
 			number = atoi(av);
 		global_variable = number;
 		opcodemng(op_code, &head, i);
@@ -51,3 +64,23 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
+
+int is_number(char *n, int line)
+{
+	
+	int i = 0;
+	(void)line;
+	while(n[i]!='\n')
+	{	
+        	if (!isdigit(n[i]))
+        	{
+            		printf ("L{%c}: usage: push integer\n",n[i]);
+            		exit(EXIT_FAILURE);
+        	}
+		i++;
+	}
+
+
+	return (1);
+}
+
