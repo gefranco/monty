@@ -19,8 +19,8 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 		{"push", push},
 		{"pall\n", _pall},
 		{"pint\n", pint},
-		{"pop", pop},
-		{"add", _add},
+		{"pop\n", pop},
+		{"add\n", _add},
 		{"nop", nop},
 		{"swap", swap},
 		{NULL, NULL}
@@ -33,5 +33,9 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 			(opcodes[i].f(stack, line_number));
 		i++;
 	}
-	return (1);
+
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+    
+
+	exit(EXIT_FAILURE);
 }
