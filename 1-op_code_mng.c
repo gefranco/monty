@@ -18,8 +18,8 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 	instruction_t opcodes[] = {
 		{"push", push},
 		{"pall\n", _pall},
-		/**{"pint", pint},
-		{"pop", pop},
+		{"pint\n", pint},
+		/*{"pop", pop},
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},*/
