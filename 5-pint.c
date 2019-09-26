@@ -12,18 +12,12 @@ void pint(stack_t **stack, unsigned int line_number)
 
 	stack_t *tmp_node = *stack;
 
-	(void) line_number;
 	if (*stack == NULL)
 	{
-		return;
+		dprintf(STDOUT_FILENO,
+			"L%u: can't pint, stack empty\n",
+			line_number);
+		exit(EXIT_FAILURE);
 	}
-
-	while (tmp_node->next)
-	{
-
-		tmp_node = tmp_node->next;
-	}
-
-
 	printf("%d\n", tmp_node->n);
 }
