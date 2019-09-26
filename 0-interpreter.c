@@ -48,6 +48,8 @@ int main(int argc, char *argv[])
 	}
 	fclose(fptr);
 	free(line);
+	
+	free_stack(head);
 
 	return(0);
 }
