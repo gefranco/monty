@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
 			
 		if (strcmp(op_code, "pall\n") == 0 && i == 1)
 		{
+			free_stack(head);
                         exit(EXIT_FAILURE);
 		}
 
@@ -47,7 +48,8 @@ int main(int argc, char *argv[])
 		av = strtok(NULL, " ");
 		if (strcmp(op_code, "push\n") == 0)
 		{
-                        printf("L1{%d}: usage: push integer\n",i);
+                        fprintf(stderr,"L%d: usage: push integer\n",i);
+			free_stack(head);
 			exit(EXIT_FAILURE);
 		}
 
@@ -62,7 +64,7 @@ int main(int argc, char *argv[])
 	free(line);
 	free_stack(head);
 
-	return (0);
+	exit(EXIT_SUCCESS);
 }
 
 int is_number(char *n, int line)
@@ -74,7 +76,7 @@ int is_number(char *n, int line)
 	{	
         	if (!isdigit(n[i]))
         	{
-            		printf ("L{%c}: usage: push integer\n",n[i]);
+            		fprintf(stderr,"L%d: usage: push integer\n",line);
             		exit(EXIT_FAILURE);
         	}
 		i++;
