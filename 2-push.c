@@ -11,11 +11,35 @@ int global_variable;
 */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp_node = *stack;
 	int number;
 
 	number = global_variable;
 
+	(void) line_number;
+
+
+	if (*stack == NULL)
+	{
+		*stack = malloc(sizeof(stack_t));
+		if (*stack == NULL)
+			return;
+		(*stack)->n = number;
+		(*stack)->next = NULL;
+		return;
+	}
+
+
+	(*stack)->prev = malloc(sizeof(stack_t));
+	if ((*stack)->prev == NULL)
+		return;
+	((*stack)->prev->n) = number;
+
+	((*stack)->prev->next) = *stack;
+
+	*stack = (*stack)->prev;
+
+
+/*
 	if (line_number == 1)
 	{
 		*stack = malloc(sizeof(stack_t));
@@ -36,4 +60,6 @@ void push(stack_t **stack, unsigned int line_number)
 	tmp_node->next->n = number;
 	tmp_node->next->next = NULL;
 	tmp_node->next->prev = tmp_node;
+
+*/	
 }
