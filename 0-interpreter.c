@@ -33,6 +33,8 @@ int main(int argc, char *argv[])
 
 
 	fptr = fopen(argv[1], "r");
+	if(!fptr)
+		exit(EXIT_FAILURE);
 	while (getline(&line, &max, fptr) != EOF)
 	{
 		op_code = NULL;
@@ -41,6 +43,7 @@ int main(int argc, char *argv[])
 		if (strcmp(op_code, "pall\n") == 0 && i == 1)
 		{
 			free_stack(head);
+			free(line);
                         exit(EXIT_FAILURE);
 		}
 
@@ -50,6 +53,7 @@ int main(int argc, char *argv[])
 		{
                         fprintf(stderr,"L%d: usage: push integer\n",i);
 			free_stack(head);
+			free(line);
 			exit(EXIT_FAILURE);
 		}
 
@@ -76,8 +80,11 @@ int is_number(char *n, int line)
 	{	
         	if (!isdigit(n[i]))
         	{
-            		fprintf(stderr,"L%d: usage: push integer\n",line);
-            		exit(EXIT_FAILURE);
+            		return(0);
+			/*fprintf(stderr,"L%d: usage: push integer\n",line);
+			free_stack(head);
+			free(line);*/
+            	
         	}
 		i++;
 	}
