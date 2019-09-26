@@ -17,8 +17,8 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 
 	instruction_t opcodes[] = {
 		{"push", push},
-		{"pall\n", _pall},
-		{"pint\n", pint},
+		{"pall", _pall},
+		{"pint", pint},
 		{"pop", pop},
 		{"add", _add},
 		{"nop", nop},
@@ -30,8 +30,16 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 	while (opcodes[i].opcode)
 	{
 		if (strcmp(opcodes[i].opcode, opcode) == 0)
+		{
 			(opcodes[i].f(stack, line_number));
+			return (0);
+		}
+		
 		i++;
 	}
-	return (1);
+
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+    
+
+	exit(EXIT_FAILURE);
 }
