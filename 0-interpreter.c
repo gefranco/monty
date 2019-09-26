@@ -71,7 +71,9 @@ int main(int argc, char *argv[])
 			if(_is_number(av)==0)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", i);
-				exit(1);	
+				free_stack(head);
+				free(line);
+				exit(EXIT_FAILURE);	
 			}
 			else
                 	{
