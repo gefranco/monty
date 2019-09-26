@@ -3,8 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 #include "monty.h"
-int is_number(char *n,int line);
 
+int is_number(char *n, int line);
 int global_variable;
 
 /**
@@ -37,6 +37,10 @@ int main(int argc, char *argv[])
 
 	fptr = fopen(argv[1], "r");
 	if (!fptr)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
 		exit(EXIT_FAILURE);
 	while (getline(&line, &max, fptr) != EOF)
 	{
@@ -52,14 +56,14 @@ int main(int argc, char *argv[])
 		av = strtok(NULL, " ");
 		if (strcmp(op_code, "push\n") == 0)
 		{
-			fprintf(stderr,"L%d: usage: push integer\n",i);
+			fprintf(stderr, "L%d: usage: push integer\n", i);
 			free_stack(head);
 			free(line);
 			exit(EXIT_FAILURE);
 		}
 
 
-		if (av && is_number(av,i))
+		if (av && is_number(av, i))
 			number = atoi(av);
 		global_variable = number;
 		opcodemng(op_code, &head, i);
@@ -76,11 +80,11 @@ int is_number(char *n, int line)
 {
 	int i = 0;
 	(void)line;
-	while(n[i]!='\n')
+	while (n[i] != '\n')
 	{
-        	if (!isdigit(n[i]))
-        	{
-            		return(0);
+		if (!isdigit(n[i]))
+		{
+			return (0);
 		}
 		i++;
 	}
@@ -88,4 +92,3 @@ int is_number(char *n, int line)
 
 	return (1);
 }
-
