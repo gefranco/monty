@@ -3,7 +3,7 @@
 #include "monty.h"
 
 /**
-*_pall - print the stack reverse.
+*pop - print the stack reverse.
 *@stack: Pointer to header of the stack.
 *@line_number: line number of the file.
 */
@@ -12,20 +12,21 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	stack_t *tmp_node = *stack;
 
-	(void) line_number;
 	if(*stack==NULL)
 	{
-		return;
+		dprintf(STDOUT_FILENO,
+			"L%u: can't pop an empty stack\n",
+			line_number);
 	}
-
-	while (tmp_node->next)
+	if (tmp_node->next)
+	{
+		*stack = tmp_node->next;
+		tmp_node = NULL;
+	}
+	else
 	{
 
-		tmp_node = tmp_node->next;
+		free (*stack);
+		*stack = NULL;
 	}
-
-	tmp_node->prev->next = NULL;
-	tmp_node->prev = NULL;
-	tmp_node = NULL;
-
 }
