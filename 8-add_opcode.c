@@ -10,18 +10,19 @@
 
 void _add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp_node, *new;
+	stack_t *tmp_node;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		printf("L%u: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	tmp_node = *stack;
-	tmp_node = tmp_node->next;
-	tmp_node->n += (*stack)->n;
-	tmp_node->prev = NULL;
-	new = *stack;
-	*stack = tmp_node;
-	free(new);
+
+	while (tmp_node->next)
+	{
+		tmp_node = tmp_node->next;
+	}
+	tmp_node->n += tmp_node->prev->n;
+	tmp_node->prev->prev->next = tmp_node;
+	tmp_node->prev = tmp_node->prev->prev;
 }
