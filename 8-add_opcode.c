@@ -17,12 +17,11 @@ void _add(stack_t **stack, unsigned int line_number)
 		printf("L%u: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	tmp_node = *stack;
+	tmp_node = tmp_node->next;
+	tmp_node->n += (*stack)->n;
+	tmp_node->prev = NULL;
+	free(*stack);
+	*stack = tmp_node;
 
-	while (tmp_node->next)
-	{
-		tmp_node = tmp_node->next;
-	}
-	tmp_node->n += tmp_node->prev->n;
-	tmp_node->prev->prev->next = tmp_node;
-	tmp_node->prev = tmp_node->prev->prev;
 }
