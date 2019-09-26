@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include "monty.h"
 
-int is_number(char *n, int line);
+int _is_number(char *n);
 int global_variable;
 
 /**
@@ -41,21 +41,24 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-		exit(EXIT_FAILURE);
+
 	while (getline(&line, &max, fptr) != EOF)
 	{
 		op_code = NULL;
-		op_code = strtok(line, " ");
-		if (strcmp(op_code, "pall\n") == 0 && i == 1)
+		op_code = strtok(line, " \n\t");
+		if (strcmp(op_code, "pall") == 0 && i == 1)
 		{
 			free_stack(head);
 			free(line);
 			exit(EXIT_FAILURE);
 		}
 
-		av = strtok(NULL, " ");
-		if (strcmp(op_code, "push\n") == 0)
+		av = strtok(NULL, " \n\t");
+
+		
+		if (strcmp(op_code, "push") == 0 && !av)
 		{
+			
 			fprintf(stderr, "L%d: usage: push integer\n", i);
 			free_stack(head);
 			free(line);
@@ -63,9 +66,21 @@ int main(int argc, char *argv[])
 		}
 
 
-		if (av && is_number(av, i))
-			number = atoi(av);
-		global_variable = number;
+		if (strcmp(op_code,"push")==0)
+		{
+			if(_is_number(av)==0)
+			{
+				fprintf(stderr, "L%d: usage: push integer\n", i);
+				exit(1);	
+			}
+			else
+                	{
+                        	number = atoi(av);
+                        	global_variable = number;
+               		}	
+			/*number = atoi(av);
+			global_variable = number;*/
+		}
 		opcodemng(op_code, &head, i);
 		i++;
 	}
@@ -76,17 +91,23 @@ int main(int argc, char *argv[])
 	exit(EXIT_SUCCESS);
 }
 
-int is_number(char *n, int line)
+
+
+
+int _is_number(char *n)
 {
 	int i = 0;
-	(void)line;
-	while (n[i] != '\n')
+	
+	
+	for(i = 0; n[i]; i++)
 	{
-		if (!isdigit(n[i]))
+		if (n[i] == '-' && i == 0)
+            		continue;
+		if (isdigit(n[i]) == 0)
 		{
 			return (0);
 		}
-		i++;
+
 	}
 
 
