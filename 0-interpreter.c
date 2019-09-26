@@ -14,7 +14,6 @@ int global_variable;
 
 int main(int argc, char *argv[])
 {
-	
 
 	FILE *fptr;
 	char *line = NULL;
@@ -48,8 +47,7 @@ int main(int argc, char *argv[])
 	}
 	fclose(fptr);
 	free(line);
-	
 	free_stack(head);
 
-	return(0);
+	return (0);
 }
