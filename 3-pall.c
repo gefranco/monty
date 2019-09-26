@@ -13,18 +13,10 @@ void _pall(stack_t **stack, unsigned int line_number)
 	stack_t *tmp_node = *stack;
 
 	(void) line_number;
-	
-	/*while (tmp_node->next)
-	{
-
-		tmp_node = tmp_node->next;
-	}*/
-
-	while (tmp_node->next)
+	while (tmp_node != NULL)
 	{
 		printf("%d\n", tmp_node->n);
 		tmp_node = tmp_node->next;
 	}
 
-	printf("%d\n", tmp_node->n);
 }
