@@ -12,7 +12,7 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	stack_t *tmp_node = *stack;
 
-	if(*stack==NULL)
+	if (*stack == NULL)
 	{
 		dprintf(STDOUT_FILENO,
 			"L%u: can't pop an empty stack\n",
@@ -26,7 +26,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	else
 	{
 
-		free (*stack);
+		free(*stack);
 		*stack = NULL;
 	}
 }
