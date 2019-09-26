@@ -14,11 +14,13 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 {
 
 	int i = 0;
-	
+
 	instruction_t opcodes[] = {
 		{"push", push},
 		{"pall\n", _pall},
 		{"pint\n", pint},
+		{"add", add},
+		{"nop", nop},
 		/*{"pop", pop},
 		{"swap", swap},
 		{"add", add},
