@@ -23,6 +23,7 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 		{"add", _add},
 		{"nop", nop},
 		{"swap", swap},
+		{"sub", _sub},
 		{NULL, NULL}
 	};
 
