@@ -72,6 +72,8 @@ int main(int argc, char *argv[])
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", i);
 				free_stack(head);
+				if(head)
+					free(head);
 				free(line);
 				exit(EXIT_FAILURE);	
 			}
