@@ -25,6 +25,8 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 		{"swap", swap},
 		{"sub", _sub},
 		{"mul", _mul},
+		{"div", _div},
+		{"mod", _mod},
 		{NULL, NULL}
 	};
 
@@ -36,7 +38,7 @@ int opcodemng(char *opcode, stack_t **stack, unsigned int line_number)
 			(opcodes[i].f(stack, line_number));
 			return (0);
 		}
-		
+
 		i++;
 	}
 	return (-1);
