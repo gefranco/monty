@@ -8,7 +8,7 @@
 */
 void _sub(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp;
+	stack_t *tmp, *other;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
@@ -21,6 +21,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 	tmp = tmp->next;
 	tmp->n -= (*stack)->n;
 	tmp->prev = NULL;
-	free(*stack);
+	other = *stack;
 	*stack = tmp;
+	free(other);
 }
