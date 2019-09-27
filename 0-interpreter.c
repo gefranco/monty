@@ -46,10 +46,13 @@ int main(int argc, char *argv[])
 	{
 		op_code = NULL;
 		op_code = strtok(line, " \n\t");
+		if (op_code == NULL)
+			continue;
 		if (strcmp(op_code, "pall") == 0 && i == 1)
 		{
 			free_stack(head);
 			free(line);
+			fclose(fptr);
 			exit(EXIT_FAILURE);
 		}
 
@@ -62,6 +65,7 @@ int main(int argc, char *argv[])
 			fprintf(stderr, "L%d: usage: push integer\n", i);
 			free_stack(head);
 			free(line);
+			fclose(fptr);
 			exit(EXIT_FAILURE);
 		}
 
@@ -72,9 +76,8 @@ int main(int argc, char *argv[])
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", i);
 				free_stack(head);
-				if(head)
-					free(head);
 				free(line);
+				fclose(fptr);
 				exit(EXIT_FAILURE);	
 			}
 			else
@@ -85,7 +88,15 @@ int main(int argc, char *argv[])
 			/*number = atoi(av);
 			global_variable = number;*/
 		}
-		opcodemng(op_code, &head, i);
+		if(opcodemng(op_code, &head, i)==-1)
+		{
+
+			fprintf(stderr, "L%d: unknown instruction %s\n", i, op_code);
+			free_stack(head);
+			free(line);
+			fclose(fptr);
+			exit(EXIT_FAILURE);	
+		}
 		i++;
 	}
 	fclose(fptr);
