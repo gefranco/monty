@@ -20,13 +20,10 @@ int main(int argc, char *argv[])
 	FILE *fptr;
 	char *line = NULL;
 	size_t max = 0;
-
 	char *av;
 	char *op_code;
-
 	int i = 1;
 	int number = 0;
-
 	stack_t *head = NULL;
 
 	if (argc != 2)
@@ -48,6 +45,8 @@ int main(int argc, char *argv[])
 		op_code = strtok(line, " \n\t");
 		if (op_code == NULL)
 			continue;
+		if (strcmp(op_code, "#") == 0)
+			continue;
 		if (strcmp(op_code, "pall") == 0 && i == 1)
 		{
 			free_stack(head);
@@ -58,17 +57,14 @@ int main(int argc, char *argv[])
 
 		av = strtok(NULL, " \n\t");
 
-		
 		if (strcmp(op_code, "push") == 0 && !av)
 		{
-			
 			fprintf(stderr, "L%d: usage: push integer\n", i);
 			free_stack(head);
 			free(line);
 			fclose(fptr);
 			exit(EXIT_FAILURE);
 		}
-
 
 		if (strcmp(op_code,"push")==0)
 		{
@@ -78,15 +74,13 @@ int main(int argc, char *argv[])
 				free_stack(head);
 				free(line);
 				fclose(fptr);
-				exit(EXIT_FAILURE);	
+				exit(EXIT_FAILURE);
 			}
 			else
                 	{
                         	number = atoi(av);
                         	global_variable = number;
-               		}	
-			/*number = atoi(av);
-			global_variable = number;*/
+               		}
 		}
 		if(opcodemng(op_code, &head, i)==-1)
 		{
@@ -95,7 +89,7 @@ int main(int argc, char *argv[])
 			free_stack(head);
 			free(line);
 			fclose(fptr);
-			exit(EXIT_FAILURE);	
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
